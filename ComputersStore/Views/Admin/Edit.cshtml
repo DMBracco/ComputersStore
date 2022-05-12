@@ -1,0 +1,57 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Edit Product";
+    Layout = "_AdminLayout";
+}
+
+<div class="col-8">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="ProductID" />
+        <div class="form-group">
+            <label>Имя</label>
+            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Описание</label>
+            <div><span asp-validation-for="Description" class="text-danger"></span></div>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Категория</label>
+            <div><span asp-validation-for="Category" class="text-danger"></span></div>
+            <input asp-for="Category" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Цена</label>
+            <div><span asp-validation-for="Price" class="text-danger"></span></div>
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+            <a asp-action="Index" class="btn btn-secondary">Назад</a>
+        </div>
+    </form>
+
+    <div class="pt-3">
+        <label class="h2">Добавленние изображения</label>
+    @if(null == Model.Name)
+    {
+        <p><label>Сначала сохраните продукт</label></p>
+    }
+    else
+    {
+        <form asp-action="AddFile" asp-controller="Admin" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductID" />
+            <p>
+                <label>Изображение</label>
+                <input name="ImageIFormFile" type="file" class="form-control" />
+            </p>
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </form>
+    }
+    </div>
+    
+</div>

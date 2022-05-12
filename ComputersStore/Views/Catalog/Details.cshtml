@@ -1,0 +1,67 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<section class="content">
+<div class="card card-solid">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 class="d-inline-block d-sm-none">@Html.DisplayFor(model => model.Product.Name)</h3>
+                <div class="col-12">
+                        @if(null != Model.Product.Image)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Product.Image)" class="product-image" alt="Product Image">
+                        }
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <h3 class="my-3">@Html.DisplayFor(model => model.Product.Name)</h3>
+                <p>@Html.DisplayFor(model => model.Product.Description)</p>
+                <hr>
+                <div class="bg-secondary py-2 px-3 mt-4">
+                    <h2 class="mb-0 text-light">
+                        $@Html.DisplayFor(model => model.Product.Price)
+                    </h2>
+                    <h4 class="mt-0 text-light">
+                        <small>Ex Tax: $@Html.DisplayFor(model => model.Product.Price) </small>
+                    </h4>
+                </div>
+                <div class="mt-4">
+                    <form id="@Model.Product.ProductID" asp-action="AddToCart" asp-controller="Cart" method="post">
+                        <input type="hidden" asp-for="Product.ProductID" name="productId"  />
+                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                        <span class="card-text p-1">
+                            <button type="submit" class="btn btn-primary btn-lg btn-flat">
+                                <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                                    Добавить в корзину
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="mt-4 product-share">
+                    <a href="#" class="text-gray">
+                        <i class="fab fa-facebook-square fa-2x"></i>
+                    </a>
+                    <a href="#" class="text-gray">
+                        <i class="fab fa-twitter-square fa-2x"></i>
+                    </a>
+                    <a href="#" class="text-gray">
+                        <i class="fas fa-envelope-square fa-2x"></i>
+                    </a>
+                    <a href="#" class="text-gray">
+                        <i class="fas fa-rss-square fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+<div class="p-3">
+    <a href="@Model.ReturnUrl" class="btn-link">&laquo; Назад</a>
+</div>

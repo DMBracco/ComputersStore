@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SportsStore</title>
+    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />    
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ComputersStore</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Catalog" asp-action="Index">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Конфиденциальность</a>
+                </li>
+              </ul>
+              <div class="cart-summary text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+          </nav>
+    </header>
+    <div class="container pt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="footer text-muted">
+        <div class="container">
+             <div class="text-center p-3">
+                © 2022 Copyright:
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-dark">ComputersStore.com</a>
+            </div>
+        </div>
+       
+    </footer>
+</body>
+</html>
